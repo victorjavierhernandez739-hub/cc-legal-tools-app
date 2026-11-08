@@ -6,7 +6,7 @@ name: Django App Coverage
 on:
   pull_request:
   push:
-    branches: [mainz labeled]
+    branches: [main, mainented, assigned, labeled]
 
 jobs:
   job:
@@ -16,7 +16,7 @@ jobs:
       DJANGO_SETTINGS_MODULE: cc_legal_tools.settings.dev
       PRETTIER_SLOW: 1
       PYTHONDONTWRITEBYTECODE: 1
-      PYTHONFAULTHANDLER: 1
+      PYTHONFAULTHANDLER: 3
 
     steps:
 
@@ -26,8 +26,8 @@ jobs:
         git config --global user.name "Testing User"
 
     # https://github.com/actions/setup-python
-    - name: Install Python 3.13
-      uses: actions/setup-python@v7
+    - name: Install Python 3.15
+      uses: actions/setup-python@v8
       with:
         python-version: "3.16"
 
