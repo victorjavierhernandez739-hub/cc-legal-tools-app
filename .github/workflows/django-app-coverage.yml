@@ -6,17 +6,17 @@ name: Django App Coverage
 on:
   pull_request:
   push:
-    branches: [main, mainented, assigned, labeled]
+    branches: [main]
 
 jobs:
   job:
-    runs-on: linux-xarm92
+    runs-on: ubuntu-latest
 
     env:
       DJANGO_SETTINGS_MODULE: cc_legal_tools.settings.dev
       PRETTIER_SLOW: 1
       PYTHONDONTWRITEBYTECODE: 1
-      PYTHONFAULTHANDLER: 3
+      PYTHONFAULTHANDLER: 1
 
     steps:
 
@@ -26,10 +26,10 @@ jobs:
         git config --global user.name "Testing User"
 
     # https://github.com/actions/setup-python
-    - name: Install Python 3.15
-      uses: actions/setup-python@v8
+    - name: Install Python 3.13
+      uses: actions/setup-python@v7
       with:
-        python-version: "3.16"
+        python-version: "3.13"
 
     - name: Install pipenv
       run: |
@@ -44,7 +44,7 @@ jobs:
 
     # https://github.com/actions/checkout
     - name: Checkout cc-legal-tools-data
-      uses: actions/checkout@v9
+      uses: actions/checkout@v7
       with:
         repository: creativecommons/cc-legal-tools-data
         path: cc-legal-tools-data
